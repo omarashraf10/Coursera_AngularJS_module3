@@ -10,9 +10,11 @@ function FoundItems()
 {
 
   var ddo ={
+     restrict: 'E',
      templateUrl : 'foundItems.html',
      scope :{
-       found : '=found'
+       found : '<foundItems',
+       onRemove : '&'
      },
      controller:FoundItemsCtrl ,
      controllerAs: 'list',
@@ -26,7 +28,6 @@ function FoundItemsCtrl()
 {
   list =this;
 
-
 }
 
 NarrowItDownController.$inject=['MenuSearchService'];
@@ -36,7 +37,11 @@ function NarrowItDownController(MenuSearchService){
 
     SearchCtrl.Search =function(){
     SearchCtrl.found= MenuSearchService.getMatchedMenuItems(SearchCtrl.searchTerm);
-    //console.log('search_menu : ',SearchCtrl.search_menu);
+    console.log('found : ',SearchCtrl.found);
+    }
+
+    SearchCtrl.removeItem =function(index){
+        MenuSearchService.remove(index);
     }
 
 }
@@ -77,6 +82,12 @@ service.getMatchedMenuItems = function (searchTerm)
 
 return service.found;
 };
+
+service.remove = function (index)
+{
+    service.found.splice(index,1);
+}
+
 }
 
 
