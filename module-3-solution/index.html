@@ -20,13 +20,8 @@
 
   </div>
   <div>
-    <ul>
-      <li ng-repeat='item in SearchCtrl.search_menu'>
-        {{item.name}}, {{item.short_name}}
-      </li>
-    </ul>
+    <!-- found-items should be implemented as a component -->
+    <found-items found="SearchCtrl.found" on-remove="...."></found-items>
   </div>
-  <!-- found-items should be implemented as a component -->
-  <found-items found-items="...." on-remove="...."></found-items>
 </body>
 </html>
